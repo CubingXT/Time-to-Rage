@@ -8,7 +8,7 @@
 	},
 	"id": "cubingxt.time-to-rage",
 	"name": "Time to Rage",
-	"version": "v1.0.0-alpha",
+	"version": "v1.1.0-alpha",
 	"developer": "CubingXT",
 	"description": "Pauses game if you die after a set percentage",
 	"dependencies": {
