@@ -1,6 +1,7 @@
 // Include headers and bring namespaces to the current scope
 #include <Geode/Geode.hpp>
 #include <Geode/modify/PlayLayer.hpp>
+#include <cvolton.level-id-api/include/EditorIDs.hpp>
 
 using namespace geode::prelude;
 
@@ -8,10 +9,12 @@ using namespace geode::prelude;
 class $modify(PlayerHasDied, PlayLayer) {
     
     // Hook destroyPlayer function
-    void destroyPlayer(PlayerObject* p0, GameObject* p1) {
-        auto label = CCLabelBMFont::create("Hello world!", "bigFont.fnt");
-        label->setPosition(100, 100);
-        this->addChild(label);
-        PlayLayer::destroyPlayer(p0, p1);
-    }
+    void destroyPlayer(PlayerObject* player, GameObject* obj) {
+        
+
+        PlayLayer::destroyPlayer(player, obj);
+
+        float percent = this->getCurrentPercent();
+        if (percent > 2) log::info("Died at {}%", percent);
+    } 
 };

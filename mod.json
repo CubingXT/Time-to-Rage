@@ -12,6 +12,13 @@
 	"developer": "CubingXT",
 	"description": "Pauses game if you die after a set percentage",
 	"dependencies": {
-		"geode.node-ids": ">=v1.20.0"
+		"geode.node-ids": {
+			"version": ">=v1.20.0",
+			"required": true
+		},
+		"cvolton.level-id-api": {
+			"version": ">=v2.0.0",
+			"required": true
+		}
 	}
 }
