@@ -5,16 +5,19 @@
 
 using namespace geode::prelude;
 
-// Modifying the play layer
+// Modifwying the play layer
 class $modify(PlayerHasDied, PlayLayer) {
-    
-    // Hook destroyPlayer function
+
+    // Hook destroyPlayer functionw
     void destroyPlayer(PlayerObject* player, GameObject* obj) {
         
 
         PlayLayer::destroyPlayer(player, obj);
 
         float percent = this->getCurrentPercent();
+        auto level = PlayLayer::get()->m_level;
+        int levelId = EditorIDs::getID(level);
         if (percent > 2) log::info("Died at {}%", percent);
+        log::info("on level {}", levelId);
     } 
 };
