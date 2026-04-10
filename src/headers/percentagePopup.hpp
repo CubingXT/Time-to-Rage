@@ -18,7 +18,8 @@ protected:
 
         // Create text input
         m_input = TextInput::create(200.f, "Enter a number...");
-        m_input->setFilter("0123456789");
+        m_input->setFilter("0123456789.");
+        m_input->setMaxCharCount(5);
         m_input->setPosition(contentSize / 2 + ccp(0, 10));
         m_mainLayer->addChild(m_input);
 
