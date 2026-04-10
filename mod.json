@@ -23,7 +23,8 @@
 	},
 	"resources": {
 		"files" : [
-			"resources/ahhhSoundEffect.wav"
+			"resources/ahhhSoundEffect.wav",
+			"resources/button-icon.png"
 		]
 	}
 }

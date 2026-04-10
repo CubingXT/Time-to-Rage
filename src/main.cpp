@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <Geode/Geode.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
+#include "headers/utils.hpp"
 
 // Includes headers for layers being modified, hooked, or using methods
 #include <Geode/modify/PlayerObject.hpp>
@@ -48,7 +49,8 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
             // Scripts to run after player death
             if (!levelIsPlatformer && !fromStartPosition && !playingInPracticeMode) {
-                if (percent >= 30) {
+                float threshold = Mod::get()->getSavedValue<float>(getLevelKey(level), 90.f);   // 90 is the default
+                if (percent >= threshold) {
                     auto path = Mod::get()->getResourcesDir() / "ahhhSoundEffect.wav";
                     
                     // Check if file actually exists
