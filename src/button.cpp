@@ -25,7 +25,7 @@ class $modify(timeToRagePauseLayer, PauseLayer) {
         float current = Mod::get()->getSavedValue<float>(getLevelKey(level), 30.f);
 
         // Popup
-        ttrBtnPopup::create([](int value) {
+        ttrBtnPopup::create([](float value) {
             log::info("User entered: {}", value);
         })->show();
     }

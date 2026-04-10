@@ -6,10 +6,10 @@ using namespace geode::prelude;
 
 class ttrBtnPopup : public Popup {
 protected:
-    std::function<void(int)> m_callback;
+    std::function<void(float)> m_callback;
     TextInput* m_input;
 
-    bool setup(std::function<void(int)> callback) {
+    bool setup(std::function<void(float)> callback) {
         m_callback = callback;
 
         this->setTitle("Enter Number");
@@ -32,7 +32,7 @@ protected:
     }
 
     void onConfirm(CCObject*) {
-        auto result = utils::numFromString<int>(m_input->getString());
+        auto result = utils::numFromString<float>(m_input->getString());
         if (result) {
             m_callback(result.unwrap());
             this->onClose(nullptr);
@@ -40,7 +40,7 @@ protected:
     }
 
 public:
-    static ttrBtnPopup* create(std::function<void(int)> callback) {
+    static ttrBtnPopup* create(std::function<void(float)> callback) {
         auto ret = new ttrBtnPopup();
         if (ret->init(240.f, 160.f)) {
             ret->setup(callback);
