@@ -35,6 +35,7 @@
 		"percentage-default-value": {
 			"name": "Default value for rage",
 			"description": "Sets the default value for rage percentage",
+			"requires-restart": true,
 			"type": "float",
 			"default": 90,
 			"min": 0,
