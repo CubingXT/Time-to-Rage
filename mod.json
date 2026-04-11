@@ -8,9 +8,22 @@
 	},
 	"id": "cubingxt.time-to-rage",
 	"name": "Time to Rage",
-	"version": "v1.1.2-alpha",
+	"version": "v1.0.0-beta",
 	"developer": "CubingXT",
 	"description": "Pauses game if you die after a set percentage",
+	"tags": [
+		"enhancement",
+		"gameplay",
+		"offline"
+	],
+	"links": {
+		"source": "https://github.com/CubingXT/Time-to-Rage/",
+		"homepage": "https://sites.google.com/view/time-to-rage/"
+	},
+	"issues": {
+		"info": "Bug report on Google Form",
+		"url": "https://forms.gle/hFmSsj8aSM5gRbKY7"
+	},
 	"dependencies": {
 		"geode.node-ids": {
 			"version": ">=v1.20.0",
