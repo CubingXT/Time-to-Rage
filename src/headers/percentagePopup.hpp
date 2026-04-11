@@ -1,6 +1,6 @@
 #pragma once
 #include <Geode/Geode.hpp>
-#include <Geode/ui/Popup.hpp>
+#include "utils.hpp"
 
 using namespace geode::prelude;
 
@@ -15,9 +15,15 @@ protected:
         this->setTitle("Enter Number");
 
         auto contentSize = m_mainLayer->getContentSize();
+        float current = 
+            Mod::get()->getSavedValue<float>(getLevelKey(PlayLayer::get()->m_level), 
+            Mod::get()->getSettingValue<double>("percentage-default-value")
+        );
+        std::string inputPlaceholder = std::format("{:.2f}", current);
+
 
         // Create text input
-        m_input = TextInput::create(200.f, "Enter a number...");
+        m_input = TextInput::create(200.f, inputPlaceholder);
         m_input->setFilter("0123456789.");
         m_input->setMaxCharCount(5);
         m_input->setPosition(contentSize / 2 + ccp(0, 10));

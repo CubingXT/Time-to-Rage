@@ -8,7 +8,7 @@
 	},
 	"id": "cubingxt.time-to-rage",
 	"name": "Time to Rage",
-	"version": "v1.1.0-alpha",
+	"version": "v1.1.2-alpha",
 	"developer": "CubingXT",
 	"description": "Pauses game if you die after a set percentage",
 	"dependencies": {
@@ -26,5 +26,44 @@
 			"resources/ahhhSoundEffect.wav",
 			"resources/button-icon.png"
 		]
+	},
+	"settings": {
+		"meta-section": {
+			"type": "title",
+			"name": "Time to Rage Settings"
+		},
+		"percentage-default-value": {
+			"name": "Default value for rage",
+			"description": "Sets the default value for rage percentage",
+			"type": "float",
+			"default": 90,
+			"min": 0,
+			"max": 100,
+			"control": {
+				"arrows": true,
+				"arrow-step": 0.1,
+				"big-arrows": true,
+				"big-arrow-step": 1,
+				"slider": true,
+				"slider-step": 0.01,
+				"input": true
+			}
+		},
+		"overrides-settings": {
+			"type": "title",
+			"name": "Override reasons for mod not to run"
+		},
+		"startpos-override": {
+			"name": "Run on StartPos",
+			"description": "Usually, the mod doesn't run if you're playing from a StartPos, this setting just makes it so it does",
+			"type": "bool",
+			"default": false
+		},
+		"practice-mode-override": {
+			"name": "Run on Practice Mode",
+			"description": "Usually, the mod doesn't run if you're playing in Practice Mode, this setting just makes it so it does",
+			"type": "bool",
+			"default": false
+		}
 	}
 }

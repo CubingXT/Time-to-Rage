@@ -32,10 +32,16 @@ class $modify(TimeToRageDeath, PlayerObject) {
         // Scripts that run if not in playtesting    
         } else if (playLayer) {
 
-            // Getting booleans to check if mod should run
+            // Getting booleans to check if mod should run and check for overrides
+            bool fromStartPosition = 
+                Mod::get()->getSettingValue<bool>("startpos-override") ? 
+                false : playLayer->m_isTestMode
+            ;
+            bool playingInPracticeMode = 
+                Mod::get()->getSettingValue<bool>("practice-mode-override") ? 
+                false : playLayer->m_isPracticeMode
+            ;
             bool levelIsPlatformer = playLayer->m_isPlatformer;
-            bool fromStartPosition = playLayer->m_isTestMode;
-            bool playingInPracticeMode = playLayer->m_isPracticeMode;
             
             // Scripts to run on player death
 
@@ -48,8 +54,15 @@ class $modify(TimeToRageDeath, PlayerObject) {
             PlayerObject::playerDestroyed(p0);
 
             // Scripts to run after player death
-            if (!levelIsPlatformer && !fromStartPosition && !playingInPracticeMode) {
-                float threshold = Mod::get()->getSavedValue<float>(getLevelKey(level), 90.f);   // 90 is the default
+            if (
+                !levelIsPlatformer && 
+                !fromStartPosition && 
+                !playingInPracticeMode
+            ) {
+                float threshold = 
+                    Mod::get()->getSavedValue<float>(getLevelKey(level), 
+                    Mod::get()->getSettingValue<double>("percentage-default-value")
+                );
                 if (percent >= threshold) {
                     auto path = Mod::get()->getResourcesDir() / "ahhhSoundEffect.wav";
                     
@@ -69,7 +82,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
         // Scripts that run if something weird happens
         } else {
 
-            // Call original playerDestroyed function as something weird happened
+            // Call original playerDestroyed function because something weird happened
             PlayerObject::playerDestroyed(p0);
         }  
     }
