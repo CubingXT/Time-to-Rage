@@ -2,6 +2,10 @@
 
     * First upload, ending alpha development and beginning beta testing
 
+# v0.1.3-alpha
+
+    * Had to shorten literally half of my lines because vscode counts each tab as 4 spaces and HJFod said so
+
 # v0.1.2-alpha
 
     * Tweaked code to follow guidelines

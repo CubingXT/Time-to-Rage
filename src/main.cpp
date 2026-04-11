@@ -20,30 +20,31 @@ class $modify(TimeToRageDeath, PlayerObject) {
     // Hook playerDestroyed function
     void playerDestroyed(bool p0) {
 
+        /* Scripts that run on the last alive frame */
+
         // Declares playLayer function for use as a variable
         auto playLayer = PlayLayer::get();
 
         // Checking if playtesting and terminates if it is
         if (LevelEditorLayer::get()) {
 
-            // Call original playerDestroyed function as we are in playtesting mode
+            // Call original function bc were in playtesting mode
             PlayerObject::playerDestroyed(p0);
 
-        // Scripts that run if not in playtesting    
+        /* Scripts that run if not in playtesting */
+
         } else if (playLayer) {
 
-            // Getting booleans to check if mod should run and check for overrides
+            // Getting bools to check if mod should run and check for overrides
             bool fromStartPosition = 
                 Mod::get()->getSettingValue<bool>("startpos-override") ? 
-                false : playLayer->m_isTestMode
-            ;
+                false : playLayer->m_isTestMode;
             bool playingInPracticeMode = 
                 Mod::get()->getSettingValue<bool>("practice-mode-override") ? 
-                false : playLayer->m_isPracticeMode
-            ;
+                false : playLayer->m_isPracticeMode;
             bool levelIsPlatformer = playLayer->m_isPlatformer;
             
-            // Scripts to run on player death
+            /* Scripts to run on the first dead frame */
 
             // Get death certificate
             auto level = playLayer->m_level;
@@ -53,37 +54,47 @@ class $modify(TimeToRageDeath, PlayerObject) {
             // Call original playerDestroyed function
             PlayerObject::playerDestroyed(p0);
 
-            // Scripts to run after player death
+            // Checking bools from earlier
             if (
                 !levelIsPlatformer && 
                 !fromStartPosition && 
                 !playingInPracticeMode
             ) {
+
+                // Gets the rage percentage
                 float threshold = 
                     Mod::get()->getSavedValue<float>(getLevelKey(level), 
-                    Mod::get()->getSettingValue<double>("percentage-default-value")
+                    Mod::get()->getSettingValue<double>(
+                        "percentage-default-value"
+                    )
                 );
+
+                // Checks if the player died at or after the set threshold
                 if (percent >= threshold) {
-                    auto path = Mod::get()->getResourcesDir() / "ahhhhSoundEffect.wav";
+                    auto path = 
+                        Mod::get()->getResourcesDir() / "ahhhhSoundEffect.wav";
                     
-                    // Check if file actually exists
+                    // Check if the audio file actually exists
+                    // i fcking hate fmod
                     if (std::filesystem::exists(path)) {
-                        auto pathStr = path.string();
-                        FMODAudioEngine::sharedEngine()->preloadEffect(pathStr);
-                        Loader::get()->queueInMainThread([pathStr, playLayer]() {
-                            FMODAudioEngine::sharedEngine()->playEffect(pathStr);
+                        auto pathSt = path.string();
+                        FMODAudioEngine::sharedEngine()->preloadEffect(pathSt);
+                        Loader::get()->queueInMainThread(
+                        [pathSt, playLayer]() {
+                            FMODAudioEngine::sharedEngine()->playEffect(pathSt);
                             playLayer->pauseGame(false);
                             FMODAudioEngine::sharedEngine()->resumeAllEffects();
-                        });   
+                        });
                     }
                 }
             }
 
-        // Scripts that run if something weird happens
+        /* Scripts that run if something weird happens */
+
         } else {
 
-            // Call original playerDestroyed function because something weird happened
+            // Call original function bc something rubrub hates me
             PlayerObject::playerDestroyed(p0);
-        }  
+        }
     }
 };
