@@ -36,8 +36,8 @@
 	},
 	"resources": {
 		"files" : [
-			"resources/ahhhSoundEffect.wav",
-			"resources/button-icon.png"
+			"resources/ahhhhSoundEffect.wav",
+			"resources/buttonIcon.png"
 		]
 	},
 	"settings": {
