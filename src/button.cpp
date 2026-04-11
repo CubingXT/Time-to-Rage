@@ -38,7 +38,7 @@ class $modify(timeToRagePauseLayer, PauseLayer) {
         auto menu = this->getChildByID("right-button-menu");
         if (!menu) return;
             auto btnSprite = CircleButtonSprite::createWithSprite(
-                "button-icon.png"_spr,
+                "buttonIcon.png"_spr,
                 1.f,
                 CircleBaseColor::Red, CircleBaseSize::Tiny
             );

@@ -64,7 +64,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
                     Mod::get()->getSettingValue<double>("percentage-default-value")
                 );
                 if (percent >= threshold) {
-                    auto path = Mod::get()->getResourcesDir() / "ahhhSoundEffect.wav";
+                    auto path = Mod::get()->getResourcesDir() / "ahhhhSoundEffect.wav";
                     
                     // Check if file actually exists
                     if (std::filesystem::exists(path)) {
