@@ -2,7 +2,7 @@
 
 Have you ever gotten super far in a level and died and you just want to slam that escape key and go "aaaaAAAAAHHHHHHHHHH"? Well you're in luck because Time to Rage does exactly that.
 
-The default percentage is 90, but you can change that in the mod's settings. You can also set a specific percent in a level via a red percent button in the pause menu.
+The default percentage is 90, but you can change that in the mod's settings. You can also set a specific percent in a level via a red percent button in the pause menu. Note, changing the default only affects new levels. Levels already downloaded don't update their percentage to the default.
 
 By default, this mod doesn't trigger if you're playing in practice mode or off of a StartPos, but you can also override this in the mod's settings, though you cannot override the mod not running in platformer mode, as platformer mode doesn't have a percentage.
 
