@@ -13,6 +13,6 @@ using namespace geode::prelude;
 // Get level id utility
 inline std::string getLevelKey(GJGameLevel* level) {
 
-    // love editor ids thx cvolton
+    // love editor level ids api thx cvolton
     return fmt::format("threshold-{}", EditorIDs::getID(level));
 }
