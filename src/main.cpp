@@ -93,7 +93,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
         } else {
 
-            // Call original function bc something rubrub hates me
+            // Call original function bc rubrub hates me
             PlayerObject::playerDestroyed(p0);
         }
     }
