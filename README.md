@@ -32,3 +32,7 @@ My friends and family: Thank you guys for being so supportive of my work, I real
 w3schools: You literally carried this entire project.
 
 The Geode Team: Thank you guys for giving us modders this awesome oppurtunity to make mods and share them with the world. You guys are just college students coding as a hobby, so it really means a lot to us that you put all of this time and effort into it.
+
+## The code
+
+I wanted other people to be able to look at my code and know exactly what everything is and exactly what everything does. My spaghetti code isn't exactly easy to read, so I made an absolute ton of comments all throughout the code. Hopefully, if someone wanted to look at my code to see how I did something, it will be a lot easier for them.
