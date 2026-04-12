@@ -1,3 +1,7 @@
+# v1.0.1
+
+    * Ended beta testing, updated Geode version
+
 # v1.0.0-beta
 
     * First upload, ending alpha development and beginning beta testing
