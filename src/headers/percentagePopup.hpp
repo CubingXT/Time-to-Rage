@@ -40,9 +40,7 @@ protected:
             Mod::get()->getSavedValue<float>(getLevelKey(playLayer->m_level),
             Mod::get()->getSettingValue<double>("percentage-default-value")
         );
-        char buf[32];
-        snprintf(buf, sizeof(buf), "%.2f", current);
-        std::string inputPlaceholder = buf;
+        std::string inputPlaceholder = fmt::format("{:.2f}", current);
 
         // Create text input and restrictions
         m_input = TextInput::create(200.f, inputPlaceholder);
