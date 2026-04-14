@@ -1,3 +1,7 @@
+# v1.2.3
+
+    * Added joke tag
+
 # v1.2.2
 
     * Simplify popup placeholder
