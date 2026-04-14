@@ -15,6 +15,8 @@ inline std::string getLevelKey(GJGameLevel* level) {
     // love editor level ids api thx cvolton
     if (level->m_levelType == GJLevelType::Editor) {
         return fmt::format("editor-{}", EditorIDs::getID(level));
+    } else if (level->m_levelType == GJLevelType::Main) {
+        return fmt::format("main-{}", EditorIDs::getID(level));
     }
-    return fmt::format("lvl-{}", EditorIDs::getID(level));
+    return fmt::format("level-{}", EditorIDs::getID(level));
 }
