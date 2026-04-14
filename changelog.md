@@ -1,3 +1,7 @@
+# v1.1.1
+
+    * Added cross-platform support
+
 # v1.1.0
 
     * Changed level ID getter to be able to tell the difference between online levels and editor levels
