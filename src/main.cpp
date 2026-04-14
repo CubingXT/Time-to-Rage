@@ -48,7 +48,6 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
             // Get death certificate
             auto level = playLayer->m_level;
-            int levelId = level ? EditorIDs::getID(level) : -1;
             float percent = playLayer->getCurrentPercent();
 
             // Call original playerDestroyed function
