@@ -1,3 +1,7 @@
+# v1.2.2
+
+    * Simplify popup placeholder
+
 # v1.2.1
 
     * Change scripts in popup to support iOS and macOS
