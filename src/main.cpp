@@ -70,6 +70,9 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
                 // Checks if the player died at or after the set threshold
                 if (percent >= threshold) {
+                    auto value = Mod::get()->getSettingValue<std::filesystem::path>("rage-sounds");
+                    std::string logPath = geode::utils::string::pathToString(value);
+                    log::debug("path = {}", logPath);
                     auto path = 
                         Mod::get()->getResourcesDir() / "ahhhhSoundEffect.wav";
                     
