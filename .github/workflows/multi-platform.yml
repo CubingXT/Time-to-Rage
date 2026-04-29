@@ -5,7 +5,9 @@ on:
   push:
     branches:
       - "**"
-
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  
 jobs:
   build:
     strategy:
@@ -14,6 +16,13 @@ jobs:
         config:
         - name: Windows
           os: windows-latest
+
+        - name: macOS
+          os: macos-latest
+
+        - name: iOS
+          os: macos-latest
+          target: iOS
 
         - name: Android32
           os: ubuntu-latest

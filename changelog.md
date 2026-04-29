@@ -1,3 +1,19 @@
+# v1.2.3
+
+    * Added joke tag
+
+# v1.2.2
+
+    * Simplify popup placeholder
+
+# v1.2.1
+
+    * Change scripts in popup to support iOS and macOS
+
+# v1.2.0
+
+    * Fix iOS and macOS support
+
 # v1.1.1
 
     * Added cross-platform support
