@@ -61,6 +61,26 @@
 				"input": true
 			}
 		},
+		"rage-sounds": {
+			"type": "file",
+			"name": "Time to Rage sound effect",
+			"description": "Set sound effect to play when mod runs. Must be .wav",
+			"default": {
+				"win": "{mod_resources_dir}/ahhhhSoundEffect.wav",
+				"android": "{mod_resources_dir}/ahhhhSoundEffect.wav",
+				"ios": "{mod_resources_dir}/ahhhhSoundEffect.wav",
+				"mac": "{mod_resources_dir}/ahhhhSoundEffect.wav"
+			},
+			"control": {
+				"dialog": "open",
+				"filters": [
+					{
+						"files": ["*.wav"],
+						"description": ".wav Waveform audio files"
+					}
+				]
+			}
+		},
 		"overrides-settings": {
 			"type": "title",
 			"name": "Override reasons for mod not to run"
