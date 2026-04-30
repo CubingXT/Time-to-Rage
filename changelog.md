@@ -1,3 +1,7 @@
+# v1.3.1
+
+    * Various bugfixes
+
 # v1.3.0
 
     * Added sound effect customization
