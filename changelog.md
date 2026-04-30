@@ -1,3 +1,7 @@
+# v1.3.0
+
+    * Added sound effect customization
+
 # v1.2.3
 
     * Added joke tag
