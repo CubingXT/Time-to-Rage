@@ -6,6 +6,8 @@ The default percentage is 90, but you can change that in the mod's settings. You
 
 By default, this mod doesn't trigger if you're playing in practice mode or off of a StartPos, but you can also override this in the mod's settings, though you cannot override the mod not running in platformer mode, as platformer mode doesn't have a percentage.
 
+You can also change the sound effect that plays when the mod runs in the mod's settings.
+
 # DISCLAIMER
 # PLEASE ENABLE "CONFIRM EXIT" BECAUSE YOU MIGHT INSTINCTIVELY PRESS THE ESCAPE KEY AND QUIT THE LEVEL BECAUSE THE MOD PAUSES AUTOMATICALLY. IT'S FOR YOUR OWN GOOD.
 
