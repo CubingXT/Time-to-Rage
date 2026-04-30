@@ -77,7 +77,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
                     // Check if the audio file actually exists
                     // i fcking hate fmod
                     if (std::filesystem::exists(path)) {
-                        auto pathSt = path.string();
+                        auto pathSt = utils::string::pathToString(path);
                         FMODAudioEngine::sharedEngine()->preloadEffect(pathSt);
                         Loader::get()->queueInMainThread(
                         [pathSt, playLayer]() {
