@@ -1,3 +1,7 @@
+# v1.3.2
+
+    * Fix path to string conversion
+
 # v1.3.1
 
     * Various bugfixes
