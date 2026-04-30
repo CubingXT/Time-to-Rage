@@ -1,5 +1,7 @@
-// Include the Geode header and other headers
+// Include the big scary filesystem header
 #include <filesystem>
+
+// Include the Geode header and other headers
 #include <Geode/Geode.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
 #include "headers/utils.hpp"
@@ -70,11 +72,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
                 // Checks if the player died at or after the set threshold
                 if (percent >= threshold) {
-                    auto value = Mod::get()->getSettingValue<std::filesystem::path>("rage-sounds");
-                    std::string logPath = geode::utils::string::pathToString(value);
-                    log::debug("path = {}", logPath);
-                    auto path = 
-                        Mod::get()->getResourcesDir() / "ahhhhSoundEffect.wav";
+                    auto path = Mod::get()->getSettingValue<std::filesystem::path>("rage-sounds");
                     
                     // Check if the audio file actually exists
                     // i fcking hate fmod
@@ -97,6 +95,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
             // Call original function bc rubrub hates me
             PlayerObject::playerDestroyed(p0);
+            log::warn("Possible: Sound effect file not found or RubRub just hates me");
         }
     }
 };
