@@ -7,7 +7,7 @@
 		"mac": "2.2081"
 	},
 	"id": "cubingxt.gd-time-to-rage",
-	"name": "Time to Rage AAAA",
+	"name": "Time to Rage",
 	"version": "v1.3.0",
 	"developer": "CubingXT",
 	"description": "Pauses game if you die after a set percentage",
