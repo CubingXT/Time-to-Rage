@@ -1,3 +1,11 @@
+# v1.4.1
+
+    * Updated Geode to 5.7.1
+
+# v1.4.0
+
+    * Updated Geode to 5.7.0
+
 # v1.3.2
 
     * Fix path to string conversion
