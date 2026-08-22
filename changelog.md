@@ -1,3 +1,9 @@
+# v1.5.0
+
+    * Updated Geode to 5.9.0
+
+    * Added silent mode
+
 # v1.4.1
 
     * Updated Geode to 5.7.1

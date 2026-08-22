@@ -72,19 +72,29 @@ class $modify(TimeToRageDeath, PlayerObject) {
 
                 // Checks if the player died at or after the set threshold
                 if (percent >= threshold) {
+
+                    if (Mod::get()->getSettingValue<bool>("silent-mode")) {
+                        
+                        playLayer->pauseGame(false);
+
+                    } else {
+
                     auto path = Mod::get()->getSettingValue<std::filesystem::path>("rage-sounds");
                     
-                    // Check if the audio file actually exists
-                    // i fcking hate fmod
-                    if (std::filesystem::exists(path)) {
-                        auto pathSt = utils::string::pathToString(path);
-                        FMODAudioEngine::sharedEngine()->preloadEffect(pathSt);
-                        Loader::get()->queueInMainThread(
-                        [pathSt, playLayer]() {
-                            FMODAudioEngine::sharedEngine()->playEffect(pathSt);
-                            playLayer->pauseGame(false);
-                            FMODAudioEngine::sharedEngine()->resumeAllEffects();
-                        });
+                        // Check if the audio file actually exists
+                        // i fcking hate fmod
+                        if (std::filesystem::exists(path)) {
+
+                            auto pathSt = utils::string::pathToString(path);
+                            FMODAudioEngine::sharedEngine()->preloadEffect(pathSt);
+                            Loader::get()->queueInMainThread(
+                                [pathSt, playLayer]() {
+                                    FMODAudioEngine::sharedEngine()->playEffect(pathSt);
+                                    playLayer->pauseGame(false);
+                                    FMODAudioEngine::sharedEngine()->resumeAllEffects();
+                                }
+                            );
+                        }
                     }
                 }
             }
