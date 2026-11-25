@@ -1,4 +1,12 @@
-# v2.0.0
+# v2.0.1-beta.1
+
+    * Support more audio formats
+
+# v2.0.0-beta.2
+
+    * Fix audio not working
+
+# v2.0.0-beta.1
 
     * Updated Geode to 6.0.0
 

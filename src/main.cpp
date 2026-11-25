@@ -60,7 +60,8 @@ void playSound(PlayLayer* playLayer, std::string(pathSt)) {
 // Checks if the sound file exists
 void checkForFile(PlayLayer* playLayer) {
     log::info("[TTR] checkForFile: called");
-    asp::fs::Path path = Mod::get()->getSettingValue<asp::fs::Path>("rage-sounds"); // bro shut up with yo yellow squigglies
+    auto customSound = Mod::get()->getSettingValue<asp::fs::Path>("rage-sounds");   // stfu vscode. your yellow squigglies are blatantly, confidently wrong
+    auto path = customSound.exists() ? customSound : Mod::get()->getResourcesDir() / "ahhhhSoundEffect.ogg";    // even more confidently wrong than freaking ai overview
     log::info("[TTR] checkForFile: path='{}' exists={}", path.string(), path.exists());
     if (path.exists()) {
         auto pathSt = path.string();
