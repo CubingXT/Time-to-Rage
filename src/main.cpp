@@ -22,19 +22,29 @@ bool checkBools(PlayLayer* playLayer) {
         Mod::get()->getSettingValue<bool>("practice-mode-override") ? 
         false : playLayer->m_isPracticeMode;
     bool levelIsPlatformer = playLayer->m_isPlatformer;
-
     bool result = !levelIsPlatformer && !fromStartPosition && !playingInPracticeMode;
     return result;
 }
 
+// Resumes all audio across platforms
+void resumeAudio(FMODAudioEngine* engine) {
+    #ifndef GEODE_IS_IOS
+        engine->resumeAllAudio();
+    #else
+        if (engine->m_globalChannel) engine->m_globalChannel->setPaused(false);
+        if(engine->m_reverbChannel) engine->m_reverbChannel->setPaused(false);
+        engine->m_globalChannelPaused = false;
+    #endif
+}
+
 // Play the rage sounds
-void playSound(PlayLayer* playLayer, std::string(pathSt)) {
+void playSound(PlayLayer* playLayer, std::string(pathSt), FMODAudioEngine* engine) {
     WeakRef<PlayLayer> weakPlayLayer = playLayer;
-    Loader::get()->queueInMainThread([pathSt, weakPlayLayer]() -> void {
+    Loader::get()->queueInMainThread([pathSt, weakPlayLayer, engine]() -> void {
         if (Ref<PlayLayer> layer = weakPlayLayer.lock()) {
-            FMODAudioEngine::sharedEngine()->playEffect(pathSt);
+            engine->playEffect(pathSt);
             layer->pauseGame(false);
-            FMODAudioEngine::sharedEngine()->resumeAllAudio();
+            
         }
     });
 }
@@ -44,9 +54,10 @@ void checkForFile(PlayLayer* playLayer) {
     auto customSound = Mod::get()->getSettingValue<asp::fs::Path>("rage-sounds");   // stfu vscode. your yellow squigglies are blatantly, confidently wrong
     auto path = customSound.exists() ? customSound : Mod::get()->getResourcesDir() / "ahhhhSoundEffect.ogg";    // even more confidently wrong than freaking ai overview
     if (path.exists()) {
+        auto engine = FMODAudioEngine::sharedEngine();
         auto pathSt = path.string();
         FMODAudioEngine::sharedEngine()->preloadEffect(pathSt);
-        playSound(playLayer, pathSt);
+        playSound(playLayer, pathSt, engine);
     }
 }
 

@@ -2,12 +2,13 @@
 	"geode": "6.0.0",
 	"gd": {
 		"win": "2.2091",
+		"ios": "2.2091",
 		"android": "2.2091",
 		"mac": "2.2091"
 	},
 	"id": "cubingxt.gd-time-to-rage",
 	"name": "Time to Rage",
-	"version": "v2.0.1-beta.2",
+	"version": "v2.0.2-beta.1",
 	"developer": "CubingXT",
 	"description": "Pauses game if you die after a set percentage",
 	"tags": [
