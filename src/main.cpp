@@ -23,68 +23,41 @@ bool checkBools(PlayLayer* playLayer) {
         false : playLayer->m_isPracticeMode;
     bool levelIsPlatformer = playLayer->m_isPlatformer;
 
-    log::info("[TTR] checkBools: startposOverride={} practiceOverride={} | m_isTestMode={} m_isPracticeMode={} m_isPlatformer={}",
-        Mod::get()->getSettingValue<bool>("startpos-override"),
-        Mod::get()->getSettingValue<bool>("practice-mode-override"),
-        playLayer->m_isTestMode,
-        playLayer->m_isPracticeMode,
-        playLayer->m_isPlatformer
-    );
-    log::info("[TTR] checkBools: fromStartPosition={} playingInPracticeMode={} levelIsPlatformer={}",
-        fromStartPosition, playingInPracticeMode, levelIsPlatformer
-    );
-
     bool result = !levelIsPlatformer && !fromStartPosition && !playingInPracticeMode;
-    log::info("[TTR] checkBools: result={}", result);
     return result;
 }
 
 // Play the rage sounds
 void playSound(PlayLayer* playLayer, std::string(pathSt)) {
-    log::info("[TTR] playSound: queueing main thread task for '{}'", pathSt);
     WeakRef<PlayLayer> weakPlayLayer = playLayer;
     Loader::get()->queueInMainThread([pathSt, weakPlayLayer]() -> void {
-        log::info("[TTR] playSound: main thread task running");
         if (Ref<PlayLayer> layer = weakPlayLayer.lock()) {
-            log::info("[TTR] playSound: playLayer still alive, playing effect + pausing");
             FMODAudioEngine::sharedEngine()->playEffect(pathSt);
             layer->pauseGame(false);
             FMODAudioEngine::sharedEngine()->resumeAllAudio();
-            log::info("[TTR] playSound: done");
-        } else {
-            log::warn("[TTR] playSound: playLayer was gone, nothing done");
         }
     });
 }
 
 // Checks if the sound file exists
 void checkForFile(PlayLayer* playLayer) {
-    log::info("[TTR] checkForFile: called");
     auto customSound = Mod::get()->getSettingValue<asp::fs::Path>("rage-sounds");   // stfu vscode. your yellow squigglies are blatantly, confidently wrong
     auto path = customSound.exists() ? customSound : Mod::get()->getResourcesDir() / "ahhhhSoundEffect.ogg";    // even more confidently wrong than freaking ai overview
-    log::info("[TTR] checkForFile: path='{}' exists={}", path.string(), path.exists());
     if (path.exists()) {
         auto pathSt = path.string();
         FMODAudioEngine::sharedEngine()->preloadEffect(pathSt);
         playSound(playLayer, pathSt);
-    } else {
-        log::warn("[TTR] checkForFile: file does not exist, no pause will happen");
     }
 }
 
 // Checks if the player died at or after the set threshold
 void getThresh(PlayLayer* playLayer, float percent, GJGameLevel* level, float threshold) {
-    log::info("[TTR] getThresh: percent={} threshold={} reached={}", percent, threshold, percent >= threshold);
     if (percent >= threshold) {
         bool silent = Mod::get()->getSettingValue<bool>("silent-mode");
-        log::info("[TTR] getThresh: silent-mode={}", silent);
         if (silent) {
-            log::info("[TTR] getThresh: calling pauseGame directly");
             playLayer->pauseGame(false);
         }
         else checkForFile(playLayer);
-    } else {
-        log::info("[TTR] getThresh: below threshold, doing nothing");
     }
 }
 
@@ -95,20 +68,13 @@ void rage(PlayLayer* playLayer, float percent, GJGameLevel* level) {
         Mod::get()->getSavedValue<float>(getLevelKey(level), 
         Mod::get()->getSettingValue<double>("percentage-default-value")
     );
-    log::info("[TTR] rage: levelKey='{}' threshold={} defaultSetting={}",
-        getLevelKey(level),
-        threshold,
-        Mod::get()->getSettingValue<double>("percentage-default-value")
-    );
     getThresh(playLayer, percent, level, threshold);
 }
 
 // Checks if the mod should run
 void checkIfRun(PlayLayer* playLayer, GJGameLevel* level, float percent) {
-    log::info("[TTR] checkIfRun: playLayer={} percent={}", fmt::ptr(playLayer), percent);
     if (playLayer) {
         if (checkBools(playLayer)) rage(playLayer, percent, level);
-        else log::info("[TTR] checkIfRun: checkBools blocked the mod from running");
     }
     else {
 
@@ -122,16 +88,9 @@ void checkIfRun(PlayLayer* playLayer, GJGameLevel* level, float percent) {
 class $modify(TimeToRageDeath, PlayerObject) {
     void playerDestroyed(bool p0) {
         auto playLayer = PlayLayer::get();
-        log::info("[TTR] playerDestroyed: hook fired, p0={} playLayer={} editorLayer={} isPlayer1={}",
-            p0,
-            fmt::ptr(playLayer),
-            fmt::ptr(LevelEditorLayer::get()),
-            playLayer ? (this == playLayer->m_player1) : false
-        );
 
         // Check if playtesting
         if (LevelEditorLayer::get()) {
-            log::info("[TTR] playerDestroyed: in editor, running original and returning");
             PlayerObject::playerDestroyed(p0);
             return;
         }
@@ -139,11 +98,9 @@ class $modify(TimeToRageDeath, PlayerObject) {
         // Get death certificate
         auto level = playLayer->m_level;
         float percent = playLayer->getCurrentPercent();
-        log::info("[TTR] playerDestroyed: percent={}", percent);
 
         // Kill the player
         PlayerObject::playerDestroyed(p0);
-        log::info("[TTR] playerDestroyed: original finished, calling checkIfRun");
 
         checkIfRun(playLayer, level, percent);
     }
