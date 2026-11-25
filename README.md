@@ -27,11 +27,9 @@ CubingXT: I made this mod.
 
 cvolton: Thank you to cvolton for making Editor Level ID API. I could not have made this mod without it.
 
-Negative_Culture8383: I couldn't think of an idea for a mod so naturally, as we all do, I searched on Reddit and found [this reddit thread](https://www.reddit.com/r/geometrydash/comments/1ol026a/my_mod_ideas_for_geometry_dash/). Thank you man for the awesome idea.
+Negative_Culture8383: I couldn't think of an idea for a mod, so naturally, as we all do, I searched on Reddit and found [this reddit thread](https://www.reddit.com/r/geometrydash/comments/1ol026a/my_mod_ideas_for_geometry_dash/). Thank you man for the awesome idea.
 
 My friends and family: Thank you guys for being so supportive of my work, I really appretiate it.
-
-w3schools: You literally carried this entire project.
 
 The Geode Team: Thank you guys for giving us modders this awesome oppurtunity to make mods and share them with the world. You guys are just college students coding as a hobby, so it really means a lot to us that you put all of this time and effort into it.
 
