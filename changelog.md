@@ -1,3 +1,7 @@
+# v2.0.1-beta.2
+
+    * Remove iOS from build because resumeAllAudio isn't defined on iOS and resumeAllEffects was removed
+
 # v2.0.1-beta.1
 
     * Support more audio formats
