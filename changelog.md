@@ -1,3 +1,7 @@
+# v2.0.0
+
+    * Updated Geode to 6.0.0
+
 # v1.5.0
 
     * Updated Geode to 5.9.0

@@ -3,6 +3,7 @@
 
 // Include Geode headers and utils header
 #include <Geode/Geode.hpp>
+#include <Geode/ui/TextInput.hpp>
 #include "utils.hpp"
 
 // Brings all Geode namespaces to the current scope
@@ -45,6 +46,7 @@ protected:
         // Create text input and restrictions
         m_input = TextInput::create(200.f, inputPlaceholder);
         m_input->setFilter("0123456789.");
+        m_input->setNumericMode(true);
         m_input->setMaxCharCount(5);
 
         // Put the popup in its place on the screen

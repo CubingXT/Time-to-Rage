@@ -7,7 +7,7 @@
 #include <Geode/modify/PauseLayer.hpp>
 
 // Includes dependencies
-#include <cvolton.level-id-api/include/EditorIDs.hpp>
+#include <cvolton.level-id-api/EditorIDs.hpp>
 
 // Brings all Geode namespaces to the current scope
 using namespace geode::prelude;
@@ -41,7 +41,6 @@ class $modify(timeToRagePauseLayer, PauseLayer) {
     // Hooking customSetup function
     void customSetup() override {
         PauseLayer::customSetup();
-
         /*
             Yet again, declaring playLayer for use as a variable.
             I probably could have made it global earlier
@@ -53,22 +52,21 @@ class $modify(timeToRagePauseLayer, PauseLayer) {
         if (!playLayer || playLayer->m_level->isPlatformer()) return;
 
         // Make the actual button
-        auto menu = this->getChildByID("right-button-menu");
+        auto menu = this->getChildByIDRecursive("right-button-menu");
         if (!menu) return;
-            auto btnSprite = CircleButtonSprite::createWithSprite(
-                "buttonIcon.png"_spr,
-                1.f,
-                CircleBaseColor::Red, CircleBaseSize::Tiny
-            );
-            btnSprite->setScale(1.2f);
-            auto btn = CCMenuItemSpriteExtra::create(
-                btnSprite,
-                this,
-                menu_selector(timeToRagePauseLayer::onButtonClicked)
-            );
-            
-            btn->setID("timeToRageBtn"_spr);    // i love geode node ids
-            menu->addChild(btn);
-            menu->updateLayout();
+        auto btnSprite = CircleButtonSprite::createWithSprite(
+            "buttonIcon.png"_spr,
+            1.f,
+            CircleBaseColor::Red, CircleBaseSize::Tiny
+        );
+        btnSprite->setScale(1.2f);
+        auto btn = CCMenuItemSpriteExtra::create(
+            btnSprite,
+            this,
+            menu_selector(timeToRagePauseLayer::onButtonClicked)
+        );
+        btn->setID("timeToRageBtn"_spr);    // i love geode node ids 
+        menu->addChild(btn);
+        menu->updateLayout();
     }
 };

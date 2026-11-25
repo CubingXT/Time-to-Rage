@@ -5,7 +5,7 @@
 #include <Geode/Geode.hpp>
 
 // Include dependencies
-#include <cvolton.level-id-api/include/EditorIDs.hpp>
+#include <cvolton.level-id-api/EditorIDs.hpp>
 
 // Brings all Geode namespaces to the current scope
 using namespace geode::prelude;
