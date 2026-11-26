@@ -1,3 +1,7 @@
+# v2.0.3
+
+    * Cleaned codebase and refactored
+
 # v2.0.2-beta.1
 
     * Add iOS support
@@ -72,13 +76,9 @@
 
     * Ended beta testing, updated Geode version
 
-# v1.0.0-beta
+# v1.0.0-beta.1
 
     * First upload, ending alpha development and beginning beta testing
-
-# v0.1.3-alpha
-
-    * Had to shorten literally half of my lines because vscode counts each tab as 4 spaces and HJFod said so
 
 # v0.1.2-alpha
 

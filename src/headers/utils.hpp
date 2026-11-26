@@ -1,22 +1,17 @@
-// Tells the thing not to run multiple times
 #pragma once
 
-// Include Geode headers
 #include <Geode/Geode.hpp>
-
-// Include dependencies
 #include <cvolton.level-id-api/EditorIDs.hpp>
 
-// Brings all Geode namespaces to the current scope
 using namespace geode::prelude;
 
 // Get level id utility
 inline std::string getLevelKey(GJGameLevel* level) {
     // love editor level ids api thx cvolton
-    if (level->m_levelType == GJLevelType::Editor) {
-        return fmt::format("editor-{}", EditorIDs::getID(level));
-    } else if (level->m_levelType == GJLevelType::Main) {
-        return fmt::format("main-{}", EditorIDs::getID(level));
-    }
-    return fmt::format("level-{}", EditorIDs::getID(level));
+    fmt::string_view type =
+        level->m_levelType == GJLevelType::Editor ? "editor" :
+        level->m_levelType == GJLevelType::Main ? "main" :
+        "level"
+    ;
+    return fmt::format("{}-{}", type, EditorIDs::getID(level));
 }

@@ -1,40 +1,31 @@
-// Make the thing not call multiple times during compilation or some sht
 #pragma once
 
-// Include Geode headers and utils header
 #include <Geode/Geode.hpp>
 #include <Geode/ui/TextInput.hpp>
 #include "utils.hpp"
 
-// Brings all Geode namespaces to the current scope
 using namespace geode::prelude;
 
-// Make the class for the popup
+// Time To Rage Button Popup
 class ttrBtnPopup : public Popup {
 
-// Secret stuff for the class
 protected:
 
-    // Declares the member variable for the callback
     std::function<void(float)> m_callback;
 
-    // Declare the text input variable
     TextInput* m_input;
 
     // The actual popup itself
     bool setup(std::function<void(float)> callback) {
-
-        // Sets value for the callback variable
         m_callback = callback;
 
         // Makes the title for the popup
         this->setTitle("Enter Number");
 
         // Set a value for the screen size (love cocos2dx)
-        auto contentSize = m_mainLayer->getContentSize();
+        CCSize contentSize = m_mainLayer->getContentSize();
 
-        // Declares playLayer for use as a variable
-        auto playLayer = PlayLayer::get();
+        PlayLayer* playLayer = PlayLayer::get();
 
         // Make the placeholder for the text input
         float current = 
@@ -54,21 +45,19 @@ protected:
         m_mainLayer->addChild(m_input);
 
         // Confirm button
-        auto confirmSpr = ButtonSprite::create(
+        ButtonSprite* confirmSpr = ButtonSprite::create(
             "OK",
             "goldFont.fnt",
             "GJ_button_01.png",
             .8f
         );
-        auto confirmBtn = CCMenuItemSpriteExtra::create(
+        CCMenuItemSpriteExtra* confirmBtn = CCMenuItemSpriteExtra::create(
             confirmSpr,
             this,
             menu_selector(ttrBtnPopup::onConfirm)
         );
         confirmBtn->setPosition(contentSize / 2 + ccp(0, -30));
         m_buttonMenu->addChild(confirmBtn);
-
-        // Tells the game that drawing the popup was successful
         return true;
     }
 
@@ -81,7 +70,6 @@ protected:
         }
     }
 
-// Not so secret stuff for the class
 public:
 
     /*
@@ -89,7 +77,7 @@ public:
         or just return nullptr if rubrub feels like being difficult.
     */
     static ttrBtnPopup* create(std::function<void(float)> callback) {
-        auto ret = new ttrBtnPopup();
+        ttrBtnPopup* ret = new ttrBtnPopup();
         if (ret->init(240.f, 160.f)) {
             ret->setup(callback);
             ret->autorelease();
