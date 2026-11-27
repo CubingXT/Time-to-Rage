@@ -81,7 +81,7 @@ class $modify(TimeToRageDeath, PlayerObject) {
     void playerDestroyed(bool p0) {
         PlayLayer* playLayer = PlayLayer::get();
         // Check if playtesting, if playLayer is null, or if someone in globed lobby died
-        if (!playLayer || LevelEditorLayer::get() || !PlayerObject::isVanillaPlayer) {
+        if (!playLayer || LevelEditorLayer::get() || !PlayerObject::isVanillaPlayer()) {
             PlayerObject::playerDestroyed(p0);
             return;
         }
