@@ -80,15 +80,8 @@ void checkIfRun(PlayLayer* playLayer, GJGameLevel* level, float percent) {
 class $modify(TimeToRageDeath, PlayerObject) {
     void playerDestroyed(bool p0) {
         PlayLayer* playLayer = PlayLayer::get();
-        // Check if playtesting or if playLayer is null
-        if (!playLayer || LevelEditorLayer::get()) {
-            PlayerObject::playerDestroyed(p0);
-            return;
-        }
-        // Declares self as the player
-        PlayerObject* self = reinterpret_cast<PlayerObject*>(this);
-        // Checks if someone in globed lobby died
-        if (self != playLayer->m_player1 && self != playLayer->m_player2) {
+        // Check if playtesting, if playLayer is null, or if someone in globed lobby died
+        if (!playLayer || LevelEditorLayer::get() || !PlayerObject::isVanillaPlayer) {
             PlayerObject::playerDestroyed(p0);
             return;
         }
