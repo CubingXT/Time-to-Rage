@@ -1,3 +1,7 @@
+# v2.0.4
+
+    * Fixed bug where if someone in a globed lobby dies the mod still runs
+
 # v2.0.3
 
     * Cleaned codebase and refactored
